@@ -2,8 +2,6 @@ package com.dnnviet.personal.project.CellphoneS.repositories.product;
 
 import com.dnnviet.personal.project.CellphoneS.entities.product.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -18,10 +16,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     List<Category> findByCategoryNameContainingIgnoreCase(String categoryName);
 
     boolean existsByCategoryNameIgnoreCase(String categoryName);
-
-    List<Category> findAllByOrderByCategoryNameAsc();
-
-    List<Category> findAllByOrderByCategoryNameDesc();
 
     List<Category> findByCreatedAtAfter(LocalDateTime date);
 

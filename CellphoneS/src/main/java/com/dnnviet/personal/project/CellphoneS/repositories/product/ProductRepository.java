@@ -5,39 +5,21 @@ import com.dnnviet.personal.project.CellphoneS.entities.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByNameContainingIgnoreCase(String name);
+    Optional<Product> findByProductId(Long productId);
 
-    boolean existsByName(String name);
+    Optional<Product> findByName(String productName);
+
+    List<Product> findByCategoryId(Category categoryId);
 
     List<Product> findByBrand(String brand);
 
-    boolean existsByBrand(String brand);
+    List<Product> findByPriceBetween(Double lower, Double higher);
 
-    List<Product> findByPriceBetween(Double minPrice, Double maxPrice);
-
-    List<Product> findByCategoryId(Category category);
-
-    List<Product> findByCategoryId_CategoryId(Long categoryId);
-
-    List<Product> findByStockQuantityGreaterThan(Integer quantity);
-
-    List<Product> findByStockQuantityLessThanEqual(Integer quantity);
-
-    List<Product> findByStockQuantity(Integer quantity);
-
-    List<Product> findByPriceLessThanEqual(Double maxPrice);
-
-    List<Product> findByPriceGreaterThanEqual(Double minPrice);
-
-    List<Product> findByNameContainingIgnoreCaseAndBrand(String name, String brand);
-
-    List<Product> findByCategoryIdAndPriceBetween(Category category, Double minPrice, Double maxPrice);
-
-    List<Product> findByCreatedAtAfter(LocalDateTime date);
+    List<Product> findByStockQuantity(Integer stockQuantity);
 }
