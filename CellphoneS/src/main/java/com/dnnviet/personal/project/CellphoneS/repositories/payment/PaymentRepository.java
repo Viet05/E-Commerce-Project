@@ -14,8 +14,11 @@ import java.util.Optional;
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     List<Payment> getPaymentsByStatus(PaymentStatus status);
+
     List<Payment> getPaymentByOrderId(Order orderId);
+
     boolean existsByOrderId(Order orderId);
+
     List<Payment> findByAmountBetween(Double minAmount, Double maxAmount);
 
 }
