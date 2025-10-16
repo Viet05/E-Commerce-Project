@@ -16,17 +16,8 @@ public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
     List<OrderItem> findByProductId(Product productId);
 
-    List<OrderItem> findByOrderIdAndProductId(Order orderId, Product productId);
-
     List<OrderItem> findByQuantityBetween(Integer minQuantity, Integer maxQuantity);
-
-    List<OrderItem> findByQuantityGreaterThan(Integer quantity);
-
-    List<OrderItem> findByQuantityLessThanEqual(Integer quantity);
 
     List<OrderItem> findByPriceBetween(Double minPrice, Double maxPrice);
 
-    List<OrderItem> findByCreatedAtAfter(LocalDateTime date);
-
-    List<OrderItem> findByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
 }

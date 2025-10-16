@@ -12,27 +12,9 @@ import java.util.Optional;
 @Repository
 public interface WishListRepository extends JpaRepository<WishList, Long> {
 
-    List<WishList> findByCustomerId(Customer customer);
+    List<WishList> getAllWishListByCustomerId(Customer customerId);
 
-    List<WishList> findByCustomerId_CustomerId(Long customerId);
+    Optional<WishList> findByCustomerIdAndWishListName(Customer customerId, String wishListName);
 
-    Optional<WishList> findByCustomerId_CustomerIdAndWishListName(Long customerId, String wishListName);
 
-    List<WishList> findByWishListNameContaining(String wishListName);
-
-    List<WishList> findByWishListName(String wishListName);
-
-    boolean existsByCustomerId_CustomerIdAndWishListName(Long customerId, String wishListName);
-
-    List<WishList> findByCreatedAtAfter(LocalDateTime date);
-
-    List<WishList> findByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
-
-    Optional<WishList> findTopByCustomerId_CustomerIdOrderByCreatedAtDesc(Long customerId);
-
-    Long countByCustomerId_CustomerId(Long customerId);
-
-    Long countByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
-
-    void deleteByCustomerId_CustomerId(Long customerId);
 }

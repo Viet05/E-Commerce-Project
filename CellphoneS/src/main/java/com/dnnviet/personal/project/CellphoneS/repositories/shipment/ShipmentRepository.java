@@ -15,8 +15,6 @@ public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
 
     Optional<Shipment> findByOrderId(Order order);
 
-    Optional<Shipment> findByOrderId_OrderId(Long orderId);
-
     boolean existsByOrderId_OrderId(Long orderId);
 
     List<Shipment> findByDeliveryStatus(DeliveryStatus deliveryStatus);
@@ -25,16 +23,7 @@ public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
 
     List<Shipment> findByShipmentDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
-    List<Shipment> findByCreatedAtAfter(LocalDateTime date);
-
-    List<Shipment> findByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
-
     Optional<Shipment> findTopByOrderId_OrderIdOrderByCreatedAtDesc(Long orderId);
 
-    Long countByDeliveryStatus(DeliveryStatus deliveryStatus);
-
-    List<Shipment> findByOrderId_CustomerId_CustomerId(Long customerId);
-
-    List<Shipment> findByOrderId_CustomerId_CustomerIdAndDeliveryStatus(Long customerId, DeliveryStatus deliveryStatus);
 
 }
