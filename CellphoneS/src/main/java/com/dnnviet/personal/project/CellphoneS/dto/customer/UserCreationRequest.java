@@ -1,25 +1,21 @@
 package com.dnnviet.personal.project.CellphoneS.dto.customer;
 
-import com.dnnviet.personal.project.CellphoneS.enums.Role;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CustomerDTO {
+public class UserCreationRequest {
 
-    Long userId;
-
+    @Size(min = 10, max = 30, message = "USERNAME_INVALID")
     String username;
 
-    Role userRole;
+    @Size(min = 8)
+    String password;
 
-    LocalDateTime createdAt;
 
-    LocalDateTime updatedAt;
 }
