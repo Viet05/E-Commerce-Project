@@ -25,7 +25,7 @@ public class Shipment implements Serializable {
 
     @OneToOne
     @JoinColumn(name = "order_id")
-    private Order orderId;
+    private Order order;
 
     @Column(name = "shipment_date")
     private LocalDateTime shipmentDate;

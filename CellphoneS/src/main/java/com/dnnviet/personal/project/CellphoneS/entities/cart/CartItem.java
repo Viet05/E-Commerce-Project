@@ -25,11 +25,11 @@ public class CartItem implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "cart_id", nullable = false)
-    private Cart cartId;
+    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private Product productId;
+    private Product product;
 
     @Column(name = "quantity")
     private int quantity;

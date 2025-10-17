@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(
@@ -27,6 +28,9 @@ public class Category implements Serializable {
     @Lob
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Product> products;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

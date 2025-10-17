@@ -1,5 +1,7 @@
 package com.dnnviet.personal.project.CellphoneS.entities.order;
 
+import com.dnnviet.personal.project.CellphoneS.entities.payment.Payment;
+import com.dnnviet.personal.project.CellphoneS.entities.shipment.Shipment;
 import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
 import jakarta.persistence.*;
@@ -10,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -37,6 +40,15 @@ public class Order implements Serializable {
 
     @Column(name = "total_amount")
     private double totalAmount;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Payment payment;
+
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    private Shipment shipment;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
