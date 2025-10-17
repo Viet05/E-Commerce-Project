@@ -17,17 +17,10 @@ import java.time.LocalDateTime;
 public class UserDTO {
 
     Long userId;
-
     String username;
-
-    String password;
-
     String email;
-
     String phone;
-
     LocalDateTime birthday;
-
     Role role;
 
 }
