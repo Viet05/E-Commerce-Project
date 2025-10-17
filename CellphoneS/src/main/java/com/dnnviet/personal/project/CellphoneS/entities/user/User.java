@@ -1,6 +1,10 @@
 package com.dnnviet.personal.project.CellphoneS.entities.user;
 
 
+import com.dnnviet.personal.project.CellphoneS.entities.cart.Cart;
+import com.dnnviet.personal.project.CellphoneS.entities.cart.CartItem;
+import com.dnnviet.personal.project.CellphoneS.entities.order.Order;
+import com.dnnviet.personal.project.CellphoneS.entities.wishlist.WishList;
 import com.dnnviet.personal.project.CellphoneS.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +13,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(
@@ -27,6 +33,9 @@ public class User implements Serializable {
     @Column(nullable = false, unique = true, length = 30)
     private String username;
 
+    @Column(name =  "email")
+    private String email;
+
     @Column(nullable = false) // BCrypt ~60 ký tự
     private String password;
 
@@ -34,6 +43,20 @@ public class User implements Serializable {
     @Column(nullable = false, length = 20)
     private Role role;
 
+    @Column(name = "birthday")
+    private LocalDateTime birthday;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Cart cart;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<WishList> wishLists;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -46,4 +69,16 @@ public class User implements Serializable {
     @Version
     private Long version; // optimistic locking (tuỳ)
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
 }

@@ -1,6 +1,7 @@
 package com.dnnviet.personal.project.CellphoneS.entities.wishlist;
 
-import com.dnnviet.personal.project.CellphoneS.entities.customer.Customer;
+
+import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +25,8 @@ public class WishList implements Serializable {
     private Long wishListId;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customerId;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "wish_list_name")
     private String wishListName;

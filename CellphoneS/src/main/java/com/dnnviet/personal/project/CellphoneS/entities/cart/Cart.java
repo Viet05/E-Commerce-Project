@@ -1,6 +1,6 @@
 package com.dnnviet.personal.project.CellphoneS.entities.cart;
 
-import com.dnnviet.personal.project.CellphoneS.entities.customer.Customer;
+import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,8 +21,8 @@ public class Cart implements Serializable {
     private Long cartId;
 
     @OneToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customerId;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

@@ -1,6 +1,6 @@
 package com.dnnviet.personal.project.CellphoneS.entities.order;
 
-import com.dnnviet.personal.project.CellphoneS.entities.customer.Customer;
+import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +25,8 @@ public class Order implements Serializable {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false)
-    private Customer customerId;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "order_date")
     private LocalDateTime orderDate;
