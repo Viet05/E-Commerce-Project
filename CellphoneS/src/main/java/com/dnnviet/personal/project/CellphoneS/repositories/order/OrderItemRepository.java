@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
-    List<OrderItem> findByOrderId(Order orderId);
+    List<OrderItem> findByOrder(Order orderId);
 
-    List<OrderItem> findByProductId(Product productId);
+    List<OrderItem> findByProduct(Product productId);
 
     List<OrderItem> findByQuantityBetween(Integer minQuantity, Integer maxQuantity);
 

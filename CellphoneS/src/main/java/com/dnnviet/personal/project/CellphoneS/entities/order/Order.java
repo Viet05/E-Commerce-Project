@@ -1,6 +1,7 @@
 package com.dnnviet.personal.project.CellphoneS.entities.order;
 
 import com.dnnviet.personal.project.CellphoneS.entities.payment.Payment;
+import com.dnnviet.personal.project.CellphoneS.entities.product.Product;
 import com.dnnviet.personal.project.CellphoneS.entities.shipment.Shipment;
 import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
@@ -49,6 +50,10 @@ public class Order implements Serializable {
 
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Shipment shipment;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;

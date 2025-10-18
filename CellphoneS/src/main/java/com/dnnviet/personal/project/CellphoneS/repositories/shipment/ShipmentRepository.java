@@ -13,17 +13,12 @@ import java.util.Optional;
 @Repository
 public interface ShipmentRepository extends JpaRepository<Shipment, Long> {
 
-    Optional<Shipment> findByOrderId(Order order);
-
-    boolean existsByOrderId_OrderId(Long orderId);
+    Optional<Shipment> findByOrder(Order order);
 
     List<Shipment> findByDeliveryStatus(DeliveryStatus deliveryStatus);
 
     List<Shipment> findByDeliveryAddressContainingIgnoreCase(String deliveryAddress);
 
     List<Shipment> findByShipmentDateBetween(LocalDateTime startDate, LocalDateTime endDate);
-
-    Optional<Shipment> findTopByOrderId_OrderIdOrderByCreatedAtDesc(Long orderId);
-
 
 }

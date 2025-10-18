@@ -17,9 +17,9 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     List<Payment> getPaymentsByStatus(PaymentStatus status);
 
-    List<Payment> getPaymentByOrderId(Order orderId);
+    List<Payment> getPaymentByOrder(Order orderId);
 
-    boolean existsByOrderId(Order orderId);
+    boolean existsByOrder(Order orderId);
 
     List<Payment> findByAmountBetween(Double minAmount, Double maxAmount);
 

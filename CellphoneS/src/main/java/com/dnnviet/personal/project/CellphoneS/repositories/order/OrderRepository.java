@@ -1,7 +1,7 @@
 package com.dnnviet.personal.project.CellphoneS.repositories.order;
 
-import com.dnnviet.personal.project.CellphoneS.entities.customer.Customer;
 import com.dnnviet.personal.project.CellphoneS.entities.order.Order;
+import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    List<Order> findOrdersByCustomerId(Customer customerId);
+    List<Order> findOrdersByUser(User userId);
 
     Optional<Order> findByOrderId(Long id);
 
