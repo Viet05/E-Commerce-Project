@@ -14,16 +14,19 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class Position implements Serializable {
+public class Expertise implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "position_id")
-    private Long positionId;
+    @Column(name = "expertise_id")
+    private Long expertiseId;
 
-    @Column(name = "position_name")
-    private String positionName;
+    @Column(name = "expertise_name")
+    private String expertiseName;
 
-    @OneToMany(mappedBy = "position")
-    private List<Employee> employees;
+    @OneToMany(mappedBy = "expertise")
+    private List<Staff> staffs;
+
+    @OneToMany(mappedBy = "expertise")
+    private List<Order> orders;
 }

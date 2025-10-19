@@ -21,14 +21,14 @@ public class OrderDetail implements Serializable {
     private OrderDetailId id;
 
     @ManyToOne
-    @MapsId("order_id")
+    @MapsId("orderId")
     @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne
-    @MapsId("product_id")
+    @MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
 
-    private int quantity;
+    private Long quantity;
 }

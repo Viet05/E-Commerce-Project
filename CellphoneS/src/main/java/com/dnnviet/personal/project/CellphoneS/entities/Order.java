@@ -1,5 +1,6 @@
 package com.dnnviet.personal.project.CellphoneS.entities;
 
+import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,4 +36,34 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;
 
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
+
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
+
+    @ManyToOne
+    @JoinColumn(name = "expertise_id")
+    private Expertise expertise;
+
+    @Column(name = "delivery_address")
+    private String deliveryAddress;
+
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @Column(name = "customer_phone")
+    private String customerPhone;
+
+    @Column(name = "date")
+    private LocalDateTime date;
+
+    @Column(name = "note")
+    private String note;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private OrderStatus status;
 }
