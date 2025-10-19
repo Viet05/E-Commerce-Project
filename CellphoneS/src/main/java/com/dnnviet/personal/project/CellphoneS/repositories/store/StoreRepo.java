@@ -1,6 +1,6 @@
-package com.dnnviet.personal.project.CellphoneS.repositories;
+package com.dnnviet.personal.project.CellphoneS.repositories.store;
 
-import com.dnnviet.personal.project.CellphoneS.entities.Store;
+import com.dnnviet.personal.project.CellphoneS.entities.store.Store;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

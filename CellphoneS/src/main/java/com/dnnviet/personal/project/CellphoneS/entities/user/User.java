@@ -1,4 +1,4 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.user;
 
 import com.dnnviet.personal.project.CellphoneS.enums.UserRole;
 import jakarta.persistence.*;
@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -41,7 +43,12 @@ public class User {
     private Boolean isActive = true;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     @Column(name = "last_login")
     private LocalDateTime lastLogin;

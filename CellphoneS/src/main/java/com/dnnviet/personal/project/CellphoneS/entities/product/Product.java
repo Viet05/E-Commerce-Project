@@ -1,5 +1,6 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.product;
 
+import com.dnnviet.personal.project.CellphoneS.entities.store.Stock;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,9 @@ import lombok.NoArgsConstructor;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -63,9 +67,11 @@ public class Product implements Serializable {
     private LocalDateTime releaseDate;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @ManyToOne

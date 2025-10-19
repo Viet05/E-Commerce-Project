@@ -1,12 +1,15 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.product;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "order_details")
@@ -31,4 +34,12 @@ public class OrderDetail implements Serializable {
     private Product product;
 
     private Long quantity;
+
+    @Column(name = "created_at")
+    @CreationTimestamp
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 }

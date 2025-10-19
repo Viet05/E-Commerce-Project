@@ -1,11 +1,17 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.product;
 
+import com.dnnviet.personal.project.CellphoneS.entities.store.Area;
+import com.dnnviet.personal.project.CellphoneS.entities.user.Expertise;
+import com.dnnviet.personal.project.CellphoneS.entities.user.Customer;
+import com.dnnviet.personal.project.CellphoneS.entities.user.Staff;
 import com.dnnviet.personal.project.CellphoneS.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -61,8 +67,10 @@ public class Order implements Serializable {
     private OrderStatus status;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
-    
+
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

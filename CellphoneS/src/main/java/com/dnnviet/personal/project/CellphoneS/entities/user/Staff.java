@@ -1,5 +1,7 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.user;
 
+import com.dnnviet.personal.project.CellphoneS.entities.store.Area;
+import com.dnnviet.personal.project.CellphoneS.entities.product.Order;
 import com.dnnviet.personal.project.CellphoneS.enums.Gender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

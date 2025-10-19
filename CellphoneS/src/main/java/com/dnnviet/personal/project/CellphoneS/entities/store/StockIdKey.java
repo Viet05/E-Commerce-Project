@@ -1,4 +1,4 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.store;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -6,18 +6,18 @@ import lombok.*;
 
 import java.io.Serializable;
 
+
 @Embeddable
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Builder
 @EqualsAndHashCode
-public class OrderDetailId implements Serializable {
+public class StockIdKey implements Serializable {
 
-    @Column(name = "order_id")
-    private Long orderId;
+    @Column(name = "store_id")
+    private Long storeId;
 
     @Column(name = "product_id")
     private Long productId;
-
 }

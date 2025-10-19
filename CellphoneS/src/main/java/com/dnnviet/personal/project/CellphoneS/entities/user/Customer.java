@@ -1,5 +1,6 @@
-package com.dnnviet.personal.project.CellphoneS.entities;
+package com.dnnviet.personal.project.CellphoneS.entities.user;
 
+import com.dnnviet.personal.project.CellphoneS.entities.product.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
