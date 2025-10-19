@@ -6,7 +6,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,6 +27,7 @@ public class Customer implements Serializable {
     private Long customerId;
 
     @Column(name = "customer_name", nullable = false)
+    @NotBlank
     private String customerName;
 
     @Column(name = "address")
@@ -32,12 +36,20 @@ public class Customer implements Serializable {
     @Column(name = "phone_numbers")
     private String phoneNumber;
 
+    @Column(name = "email")
+    @Email
+    private String email;
 
     @Column(name = "birthday")
     private LocalDateTime dateOfBirth;
 
-    private String rewardPoints;
+    @Column(name = "reward_points")
+    private BigDecimal rewardPoints;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Order> orders;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 }

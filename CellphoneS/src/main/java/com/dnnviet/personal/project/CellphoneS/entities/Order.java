@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,14 +27,14 @@ public class Order implements Serializable {
     @Column(name = "order_date")
     private LocalDateTime orderDate;
 
-    @Column(name = "total_amount")
-    private Double totalAmount;
+    @Column(name = "total_amount", nullable = false)
+    private BigDecimal totalAmount;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails;
 
     @ManyToOne
@@ -51,14 +52,6 @@ public class Order implements Serializable {
     @Column(name = "delivery_address")
     private String deliveryAddress;
 
-    @Column(name = "customer_name")
-    private String customerName;
-
-    @Column(name = "customer_phone")
-    private String customerPhone;
-
-    @Column(name = "date")
-    private LocalDateTime date;
 
     @Column(name = "note")
     private String note;
@@ -66,4 +59,10 @@ public class Order implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
+
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

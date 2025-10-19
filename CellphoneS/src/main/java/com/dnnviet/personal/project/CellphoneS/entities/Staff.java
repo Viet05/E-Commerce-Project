@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,14 +19,15 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class Staff {
+public class Staff implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "staff_id")
     private Long staffId;
 
-    @Column(name = "staff_name")
+    @Column(name = "staff_name", nullable = false)
+    @NotBlank
     private String staffName;
 
     @Column(name = "genders")
@@ -37,9 +41,10 @@ public class Staff {
     private LocalDateTime dateOfBirth;
 
     @Column(name = "phone")
-    private int phone;
+    private String phone;
 
     @Column(name = "email")
+    @Email
     private String email;
 
     @Column(name = "start_date")
@@ -55,4 +60,8 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff")
     private List<Order> orders;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

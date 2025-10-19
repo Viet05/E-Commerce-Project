@@ -2,9 +2,9 @@ package com.dnnviet.personal.project.CellphoneS.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.*;
+
+import java.io.Serializable;
 
 
 @Embeddable
@@ -13,7 +13,7 @@ import lombok.*;
 @Data
 @Builder
 @EqualsAndHashCode
-public class StockIdKey {
+public class StockIdKey implements Serializable {
 
     @Column(name = "store_id")
     private Long storeId;

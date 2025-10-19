@@ -28,6 +28,6 @@ public class ProductCategory implements Serializable {
     @Column(name = "note")
     private String note;
 
-    @OneToMany(mappedBy = "productCategory")
+    @OneToMany(mappedBy = "productCategory", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> product;
 }

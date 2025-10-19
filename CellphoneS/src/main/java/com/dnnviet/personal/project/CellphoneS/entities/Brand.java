@@ -25,6 +25,6 @@ public class Brand implements Serializable {
     @Column(name = "brand_name")
     private String brandName;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products;
 }
