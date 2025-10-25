@@ -6,7 +6,6 @@ import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.service.user.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
