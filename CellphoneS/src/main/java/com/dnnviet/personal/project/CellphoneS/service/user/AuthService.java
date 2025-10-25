@@ -3,6 +3,7 @@ package com.dnnviet.personal.project.CellphoneS.service.user;
 import com.dnnviet.personal.project.CellphoneS.dto.request.user.RegisterRequest;
 import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.ErrorCode;
+import com.dnnviet.personal.project.CellphoneS.enums.UserRole;
 import com.dnnviet.personal.project.CellphoneS.exception.user.AppException;
 import com.dnnviet.personal.project.CellphoneS.mapping.user.UserMapper;
 import com.dnnviet.personal.project.CellphoneS.repositories.user.UserRepo;
@@ -25,15 +26,17 @@ public class AuthService {
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
 
+    //Service Register(Đăng ký)
     public User registerUser(RegisterRequest registerRequest) {
         if (userRepository.existsByUsername(registerRequest.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
         User user = userMapper.toUser(registerRequest);
-
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        //Strength đc config trong SecurityConfig
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //Set role
+        user.setRole(UserRole.CUSTOMER);
 
         return userRepository.save(user);
     }
