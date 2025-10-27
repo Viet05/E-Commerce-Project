@@ -22,16 +22,17 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        //lấy URL controller thôi ko lấy /cellphones
-                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/register").permitAll()
+                        .requestMatchers(
+                                "/api/v1/auth/**"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 );
 
-        return http.build();
+        return httpSecurity.build();
     }
 
 }
