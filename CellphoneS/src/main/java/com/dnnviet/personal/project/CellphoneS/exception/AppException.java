@@ -1,4 +1,4 @@
-package com.dnnviet.personal.project.CellphoneS.exception.user;
+package com.dnnviet.personal.project.CellphoneS.exception;
 
 
 import com.dnnviet.personal.project.CellphoneS.enums.ErrorCode;

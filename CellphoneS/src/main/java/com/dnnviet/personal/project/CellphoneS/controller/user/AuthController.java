@@ -1,7 +1,9 @@
 package com.dnnviet.personal.project.CellphoneS.controller.user;
 
+import com.dnnviet.personal.project.CellphoneS.dto.request.user.LoginRequest;
 import com.dnnviet.personal.project.CellphoneS.dto.request.user.RegisterRequest;
 import com.dnnviet.personal.project.CellphoneS.dto.respone.ApiResponse;
+import com.dnnviet.personal.project.CellphoneS.dto.respone.LoginResponse;
 import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.service.user.AuthService;
 import jakarta.validation.Valid;
@@ -30,5 +32,13 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-
+    @PostMapping("/login")
+    public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+        boolean result = authService.login(request);
+        return ApiResponse.<LoginResponse>builder()
+                .data(LoginResponse.builder()
+                        .authenticated(result)
+                        .build())
+                .build();
+    }
 }
