@@ -2,6 +2,7 @@ package com.dnnviet.personal.project.CellphoneS.service.user;
 
 import com.dnnviet.personal.project.CellphoneS.dto.request.user.LoginRequest;
 import com.dnnviet.personal.project.CellphoneS.dto.request.user.RegisterRequest;
+import com.dnnviet.personal.project.CellphoneS.dto.respone.LoginResponse;
 import com.dnnviet.personal.project.CellphoneS.entities.user.Customer;
 import com.dnnviet.personal.project.CellphoneS.entities.user.User;
 import com.dnnviet.personal.project.CellphoneS.enums.ErrorCode;
@@ -10,6 +11,7 @@ import com.dnnviet.personal.project.CellphoneS.exception.AppException;
 import com.dnnviet.personal.project.CellphoneS.mapping.user.UserMapper;
 import com.dnnviet.personal.project.CellphoneS.repositories.user.CustomerRepo;
 import com.dnnviet.personal.project.CellphoneS.repositories.user.UserRepo;
+import com.dnnviet.personal.project.CellphoneS.security.JwtUtils;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -28,8 +30,9 @@ public class AuthService {
     UserMapper userMapper;
     PasswordEncoder passwordEncoder;
     CustomerRepo customerRepo;
+    JwtUtils JWToken;
 
-    //Service Register(Đăng ký)
+    //Service Register
     public User registerUser(RegisterRequest registerRequest) {
         if (userRepository.existsByUsername(registerRequest.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
@@ -55,11 +58,21 @@ public class AuthService {
     }
 
     //Service login
-    public boolean login(LoginRequest request) {
-        var user = userRepository.findByUsername(request.getEmail())
+    public LoginResponse login(LoginRequest request) {
+        var user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
-        return passwordEncoder.matches(request.getPassword(), user.getPassword());
+        boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
+
+        if (!authenticated)
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+
+        var token = JWToken.generateToken(request.getEmail());
+
+        return LoginResponse.builder()
+                .token(token)
+                .authenticated(true)
+                .build();
     }
 
 }
