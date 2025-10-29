@@ -21,6 +21,7 @@ public class AuthController {
 
     private final AuthService authService;
 
+    //endpoint register
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<User>> register(@Valid @RequestBody RegisterRequest request) {
         User newUser = authService.registerUser(request);
@@ -32,10 +33,13 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    //endpoint login
     @PostMapping("/login")
     public ApiResponse<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         var result = authService.login(request);
         return ApiResponse.<LoginResponse>builder()
+                .code(200)
+                .message("Successfully logged in")
                 .data(result)
                 .build();
     }

@@ -59,15 +59,18 @@ public class AuthService {
 
     //Service login
     public LoginResponse login(LoginRequest request) {
-        var user = userRepository.findByEmail(request.getEmail())
+        //Kiểm tra email
+        var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
 
+        //kểm tra password
         boolean authenticated = passwordEncoder.matches(request.getPassword(), user.getPassword());
 
         if (!authenticated)
             throw new AppException(ErrorCode.UNAUTHENTICATED);
 
-        var token = JWToken.generateToken(request.getEmail());
+        //tạo token cho những request sau
+        var token = JWToken.generateToken(request.getUsername());
 
         return LoginResponse.builder()
                 .token(token)

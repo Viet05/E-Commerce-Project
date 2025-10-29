@@ -25,5 +25,7 @@ logging:
   level:
     org.springframework.security: DEBUG
 
-
 debug: true
+
+jwt:
+  signerKey: "KJ5V7oXO1ddz_utM0Y1ATqa9klyETrc6z9SRjrOB87k"
