@@ -9,7 +9,8 @@ public enum ErrorCode {
 
     USER_EXISTED( 1001, "User existed"),
     USER_NOT_FOUND( 1002, "User Not Found"),
-    UNAUTHENTICATED(1003, "Unauthenticated");
+    UNAUTHENTICATED(1003, "Unauthenticated"),
+    INVALID_INPUT(1004, "Invalid input");
 
     private final int code;
 
